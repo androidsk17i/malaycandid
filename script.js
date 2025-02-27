@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const clothing = document.getElementById('clothing');
     const action = document.getElementById('action');
     const setting = document.getElementById('setting');
+    const shotType = document.getElementById('shotType');
     const style = document.getElementById('style');
     const lighting = document.getElementById('lighting');
     const aesthetic = document.getElementById('aesthetic');
@@ -14,7 +15,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Function to get selected values from multiple select
     const getSelectedValues = (select) => {
-        return Array.from(select.selectedOptions).map(option => option.value);
+        const selected = Array.from(select.selectedOptions).map(option => option.value);
+        // Return only the first selected value
+        return selected.slice(0, 1);
     };
 
     // Function to get random items from array
@@ -28,15 +31,14 @@ document.addEventListener('DOMContentLoaded', () => {
         // Clear current selections
         Array.from(select.options).forEach(option => option.selected = false);
         
-        // Get random number of options to select (1 to 3)
-        const count = Math.floor(Math.random() * 3) + 1;
-        
-        // Get random options
+        // Get just one random option
         const options = Array.from(select.options);
-        const randomOptions = getRandomItems(options, count);
+        const randomOption = options[Math.floor(Math.random() * options.length)];
         
-        // Select the random options
-        randomOptions.forEach(option => option.selected = true);
+        // Select the random option
+        if (randomOption) {
+            randomOption.selected = true;
+        }
     };
 
     // Function to copy text to clipboard and show feedback
@@ -91,11 +93,26 @@ document.addEventListener('DOMContentLoaded', () => {
         return processedSegments.join(', ');
     };
 
+    // Event handler for selection changes
+    const handleSelectionChange = (select) => {
+        const selected = Array.from(select.selectedOptions);
+        // If more than one option is selected, keep only the last selected one
+        if (selected.length > 1) {
+            selected.forEach((option, index) => {
+                if (index !== selected.length - 1) {
+                    option.selected = false;
+                }
+            });
+        }
+        generatePrompt();
+    };
+
     // Function to generate the prompt
     const generatePrompt = () => {
         const selectedClothing = getSelectedValues(clothing);
         const selectedActions = getSelectedValues(action);
         const selectedSettings = getSelectedValues(setting);
+        const selectedShotTypes = getSelectedValues(shotType);
         const selectedStyles = getSelectedValues(style);
         const selectedLighting = getSelectedValues(lighting);
         const selectedAesthetics = getSelectedValues(aesthetic);
@@ -103,39 +120,44 @@ document.addEventListener('DOMContentLoaded', () => {
 
         let prompt = subject.value;
 
+        // Add shot type first if selected
+        if (selectedShotTypes.length > 0) {
+            prompt += `, ${selectedShotTypes[0]}`;
+        }
+
         // Add clothing if selected
         if (selectedClothing.length > 0) {
-            prompt += ` wearing ${selectedClothing.join(' and ')}`;
+            prompt += ` wearing ${selectedClothing[0]}`;
         }
 
         // Add actions if selected
         if (selectedActions.length > 0) {
-            prompt += `, ${selectedActions.join(' while ')}`;
+            prompt += `, ${selectedActions[0]}`;
         }
 
         // Add settings if selected
         if (selectedSettings.length > 0) {
-            prompt += ` in ${selectedSettings.join(' and ')}`;
+            prompt += ` in ${selectedSettings[0]}`;
         }
 
         // Add styles if selected
         if (selectedStyles.length > 0) {
-            prompt += `, ${selectedStyles.join(', ')} style`;
+            prompt += `, ${selectedStyles[0]} style`;
         }
 
         // Add lighting if selected
         if (selectedLighting.length > 0) {
-            prompt += `, with ${selectedLighting.join(' and ')} lighting`;
+            prompt += `, with ${selectedLighting[0]} lighting`;
         }
 
         // Add aesthetics if selected
         if (selectedAesthetics.length > 0) {
-            prompt += `, ${selectedAesthetics.join(', ')} aesthetic`;
+            prompt += `, ${selectedAesthetics[0]} aesthetic`;
         }
 
         // Add moods if selected
         if (selectedMoods.length > 0) {
-            prompt += `, ${selectedMoods.join(' and ')} mood`;
+            prompt += `, ${selectedMoods[0]} mood`;
         }
 
         // Add final touches
@@ -155,6 +177,7 @@ document.addEventListener('DOMContentLoaded', () => {
         selectRandomOptions(clothing);
         selectRandomOptions(action);
         selectRandomOptions(setting);
+        selectRandomOptions(shotType);
         selectRandomOptions(style);
         selectRandomOptions(lighting);
         selectRandomOptions(aesthetic);
@@ -163,8 +186,8 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // Add event listeners to all select elements
-    [clothing, action, setting, style, lighting, aesthetic, mood].forEach(select => {
-        select.addEventListener('change', generatePrompt);
+    [clothing, action, setting, shotType, style, lighting, aesthetic, mood].forEach(select => {
+        select.addEventListener('change', () => handleSelectionChange(select));
     });
 
     // Add event listener to random button
