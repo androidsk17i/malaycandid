@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Image Prompt Generator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>AI Image Prompt Generator</h1>
+        
+        <div class="generator-section">
+            <div class="input-group">
+                <label>Subject (Fixed)</label>
+                <textarea id="subject" readonly>a beautiful Malay Malaysian woman, tall, busty, thick, and chubby, 40 years old, with warm brown skin tone and gentle features</textarea>
+            </div>
+
+            <div class="input-group">
+                <label>Clothing Style</label>
+                <select id="clothing" multiple>
+                    <option value="casual tudung bawal">Casual Tudung Bawal</option>
+                    <option value="shawl style hijab">Shawl Style Hijab</option>
+                    <option value="instant hijab">Instant Hijab</option>
+                    <option value="loose tudung">Loose Tudung</option>
+                    <option value="modern hijab style">Modern Hijab Style</option>
+                    <option value="traditional tudung">Traditional Tudung</option>
+                    <option value="cotton headscarf">Cotton Headscarf</option>
+                    <option value="printed shawl">Printed Shawl</option>
+                    <option value="plain tudung">Plain Tudung</option>
+                    <option value="chiffon shawl">Chiffon Shawl</option>
+                    <option value="traditional baju kurung" selected>Traditional Baju Kurung</option>
+                    <option value="modern baju kurung">Modern Baju Kurung</option>
+                    <option value="baju kebaya">Baju Kebaya</option>
+                    <option value="cotton baju kurung">Cotton Baju Kurung</option>
+                    <option value="casual baju kurung">Casual Baju Kurung</option>
+                    <option value="printed baju kurung">Printed Baju Kurung</option>
+                    <option value="plain baju kurung">Plain Baju Kurung</option>
+                    <option value="modern jubah">Modern Jubah</option>
+                    <option value="casual jubah">Casual Jubah</option>
+                    <option value="long dress">Long Dress</option>
+                    <option value="maxi dress">Maxi Dress</option>
+                    <option value="loose blouse">Loose Blouse</option>
+                    <option value="long tunic">Long Tunic</option>
+                    <option value="palazzo pants">Palazzo Pants</option>
+                    <option value="long skirt">Long Skirt</option>
+                    <option value="traditional sarong">Traditional Sarong</option>
+                    <option value="modern blouse">Modern Blouse</option>
+                    <option value="cardigan">Cardigan</option>
+                    <option value="loose jacket">Loose Jacket</option>
+                    <option value="traditional shawl">Traditional Shawl</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label>Action/Pose</label>
+                <select id="action" multiple>
+                    <option value="shopping with plastic bags">Shopping with Plastic Bags</option>
+                    <option value="carrying groceries">Carrying Groceries</option>
+                    <option value="walking casually">Walking Casually</option>
+                    <option value="sitting at food court">Sitting at Food Court</option>
+                    <option value="eating local food">Eating Local Food</option>
+                    <option value="browsing items">Browsing Items</option>
+                    <option value="checking phone">Checking Phone</option>
+                    <option value="waiting for bus">Waiting for Bus</option>
+                    <option value="crossing street">Crossing Street</option>
+                    <option value="buying vegetables">Buying Vegetables</option>
+                    <option value="bargaining at market">Bargaining at Market</option>
+                    <option value="carrying handbag">Carrying Handbag</option>
+                    <option value="holding umbrella">Holding Umbrella</option>
+                    <option value="fanning self">Fanning Self</option>
+                    <option value="chatting with friend">Chatting with Friend</option>
+                    <option value="paying at counter">Paying at Counter</option>
+                    <option value="queuing in line">Queuing in Line</option>
+                    <option value="looking at menu">Looking at Menu</option>
+                    <option value="drinking teh tarik">Drinking Teh Tarik</option>
+                    <option value="ordering food">Ordering Food</option>
+                    <option value="walking with shopping bags">Walking with Shopping Bags</option>
+                    <option value="checking wallet">Checking Wallet</option>
+                    <option value="wiping sweat">Wiping Sweat</option>
+                    <option value="adjusting hijab">Adjusting Hijab</option>
+                    <option value="holding shopping basket">Holding Shopping Basket</option>
+                    <option value="pushing shopping cart">Pushing Shopping Cart</option>
+                    <option value="waiting in queue">Waiting in Queue</option>
+                    <option value="walking with friend">Walking with Friend</option>
+                    <option value="sitting on bench">Sitting on Bench</option>
+                    <option value="standing at counter">Standing at Counter</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label>Setting</label>
+                <select id="setting" multiple>
+                    <option value="grocery shopping">Grocery Shopping</option>
+                    <option value="local food court">Local Food Court</option>
+                    <option value="wet market">Wet Market</option>
+                    <option value="neighborhood street">Neighborhood Street</option>
+                    <option value="bus stop">Bus Stop</option>
+                    <option value="morning market">Morning Market</option>
+                    <option value="convenience store">Convenience Store</option>
+                    <option value="local cafe">Local Cafe</option>
+                    <option value="hawker center">Hawker Center</option>
+                    <option value="residential area">Residential Area</option>
+                    <option value="community garden">Community Garden</option>
+                    <option value="playground">Playground</option>
+                    <option value="neighborhood mosque">Neighborhood Mosque</option>
+                    <option value="local library">Local Library</option>
+                    <option value="community center">Community Center</option>
+                    <option value="public park">Public Park</option>
+                    <option value="train station">Train Station</option>
+                    <option value="local clinic">Local Clinic</option>
+                    <option value="school gate">School Gate</option>
+                    <option value="laundromat">Laundromat</option>
+                    <option value="neighborhood shop">Neighborhood Shop</option>
+                    <option value="parking lot">Parking Lot</option>
+                    <option value="apartment block">Apartment Block</option>
+                    <option value="local restaurant">Local Restaurant</option>
+                    <option value="kopitiam">Kopitiam</option>
+                    <option value="mamak stall">Mamak Stall</option>
+                    <option value="night market">Night Market</option>
+                    <option value="public housing">Public Housing</option>
+                    <option value="local sundry shop">Local Sundry Shop</option>
+                    <option value="residential playground">Residential Playground</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label>Style</label>
+                <select id="style" multiple>
+                    <option value="candid snapshot" selected>Candid Snapshot</option>
+                    <option value="amateur photography" selected>Amateur Photography</option>
+                    <option value="phone camera">Phone Camera</option>
+                    <option value="everyday life">Everyday Life</option>
+                    <option value="casual">Casual</option>
+                    <option value="natural pose">Natural Pose</option>
+                    <option value="unposed">Unposed</option>
+                    <option value="slice of life">Slice of Life</option>
+                    <option value="documentary style">Documentary Style</option>
+                    <option value="street photography">Street Photography</option>
+                    <option value="spontaneous">Spontaneous</option>
+                    <option value="genuine moment">Genuine Moment</option>
+                    <option value="real life">Real Life</option>
+                    <option value="unstaged">Unstaged</option>
+                    <option value="authentic">Authentic</option>
+                    <option value="natural">Natural</option>
+                    <option value="informal">Informal</option>
+                    <option value="snapshot aesthetic">Snapshot Aesthetic</option>
+                    <option value="point and shoot">Point and Shoot</option>
+                    <option value="family photo">Family Photo</option>
+                    <option value="quick shot">Quick Shot</option>
+                    <option value="casual portrait">Casual Portrait</option>
+                    <option value="daily life">Daily Life</option>
+                    <option value="vernacular photography">Vernacular Photography</option>
+                    <option value="personal photo">Personal Photo</option>
+                    <option value="smartphone photography">Smartphone Photography</option>
+                    <option value="random shot">Random Shot</option>
+                    <option value="caught in moment">Caught in Moment</option>
+                    <option value="natural lighting">Natural Lighting</option>
+                    <option value="simple shot">Simple Shot</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label>Lighting</label>
+                <select id="lighting" multiple>
+                    <option value="natural daylight" selected>Natural Daylight</option>
+                    <option value="indoor lighting">Indoor Lighting</option>
+                    <option value="fluorescent light">Fluorescent Light</option>
+                    <option value="window light">Window Light</option>
+                    <option value="street light">Street Light</option>
+                    <option value="ambient light">Ambient Light</option>
+                    <option value="overhead lighting">Overhead Lighting</option>
+                    <option value="natural indoor light">Natural Indoor Light</option>
+                    <option value="shop lighting">Shop Lighting</option>
+                    <option value="mixed lighting">Mixed Lighting</option>
+                    <option value="available light">Available Light</option>
+                    <option value="morning light">Morning Light</option>
+                    <option value="afternoon light">Afternoon Light</option>
+                    <option value="evening light">Evening Light</option>
+                    <option value="shade">Shade</option>
+                    <option value="cloudy lighting">Cloudy Lighting</option>
+                    <option value="soft daylight">Soft Daylight</option>
+                    <option value="diffused light">Diffused Light</option>
+                    <option value="natural shadow">Natural Shadow</option>
+                    <option value="indoor shadow">Indoor Shadow</option>
+                    <option value="mall lighting">Mall Lighting</option>
+                    <option value="cafe lighting">Cafe Lighting</option>
+                    <option value="store lighting">Store Lighting</option>
+                    <option value="market lighting">Market Lighting</option>
+                    <option value="office lighting">Office Lighting</option>
+                    <option value="home lighting">Home Lighting</option>
+                    <option value="corridor light">Corridor Light</option>
+                    <option value="lift lighting">Lift Lighting</option>
+                    <option value="stairwell light">Stairwell Light</option>
+                    <option value="covered walkway light">Covered Walkway Light</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label>Aesthetic</label>
+                <select id="aesthetic" multiple>
+                    <option value="everyday" selected>Everyday</option>
+                    <option value="natural">Natural</option>
+                    <option value="casual">Casual</option>
+                    <option value="simple">Simple</option>
+                    <option value="realistic">Realistic</option>
+                    <option value="unfiltered">Unfiltered</option>
+                    <option value="raw">Raw</option>
+                    <option value="authentic">Authentic</option>
+                    <option value="candid">Candid</option>
+                    <option value="snapshot">Snapshot</option>
+                    <option value="amateur">Amateur</option>
+                    <option value="phone camera">Phone Camera</option>
+                    <option value="quick shot">Quick Shot</option>
+                    <option value="spontaneous">Spontaneous</option>
+                    <option value="genuine">Genuine</option>
+                    <option value="unstaged">Unstaged</option>
+                    <option value="real life">Real Life</option>
+                    <option value="documentary">Documentary</option>
+                    <option value="street style">Street Style</option>
+                    <option value="casual look">Casual Look</option>
+                    <option value="everyday wear">Everyday Wear</option>
+                    <option value="natural pose">Natural Pose</option>
+                    <option value="relaxed">Relaxed</option>
+                    <option value="comfortable">Comfortable</option>
+                    <option value="informal">Informal</option>
+                    <option value="regular day">Regular Day</option>
+                    <option value="daily life">Daily Life</option>
+                    <option value="normal scene">Normal Scene</option>
+                    <option value="typical day">Typical Day</option>
+                    <option value="mundane moment">Mundane Moment</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label>Mood</label>
+                <select id="mood" multiple>
+                    <option value="casual" selected>Casual</option>
+                    <option value="relaxed">Relaxed</option>
+                    <option value="natural">Natural</option>
+                    <option value="everyday">Everyday</option>
+                    <option value="comfortable">Comfortable</option>
+                    <option value="at ease">At Ease</option>
+                    <option value="informal">Informal</option>
+                    <option value="genuine">Genuine</option>
+                    <option value="authentic">Authentic</option>
+                    <option value="spontaneous">Spontaneous</option>
+                    <option value="candid">Candid</option>
+                    <option value="unguarded">Unguarded</option>
+                    <option value="real">Real</option>
+                    <option value="unstaged">Unstaged</option>
+                    <option value="natural expression">Natural Expression</option>
+                    <option value="regular">Regular</option>
+                    <option value="mundane">Mundane</option>
+                    <option value="ordinary">Ordinary</option>
+                    <option value="typical">Typical</option>
+                    <option value="daily">Daily</option>
+                    <option value="routine">Routine</option>
+                    <option value="common">Common</option>
+                    <option value="familiar">Familiar</option>
+                    <option value="normal">Normal</option>
+                    <option value="unremarkable">Unremarkable</option>
+                    <option value="simple">Simple</option>
+                    <option value="modest">Modest</option>
+                    <option value="humble">Humble</option>
+                    <option value="unpretentious">Unpretentious</option>
+                    <option value="straightforward">Straightforward</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="output-section">
+            <label>Generated Prompt</label>
+            <textarea id="output" readonly></textarea>
+            <button id="copyButton">Copy to Clipboard</button>
+            <button id="randomButton" class="random-button">Generate Random Prompt</button>
+        </div>
+
+        <footer class="footer">
+            <p>© 2025 All Rights Reserved androidsk17i</p>
+            <p>Made with <span class="pixel-heart">❤</span> in my bed</p>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 
