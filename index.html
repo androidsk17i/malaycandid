@@ -12,8 +12,17 @@
         
         <div class="generator-section">
             <div class="input-group">
-                <label>Subject (Fixed)</label>
-                <textarea id="subject" readonly>a beautiful Malay Malaysian woman, tall with a full figure, voluptuous, curvy, well-endowed, 40 years old, with warm brown skin tone and gentle features, looking away from camera, candid expression</textarea>
+                <label>Subject Type</label>
+                <select id="subjectType">
+                    <option value="single" selected>Single Person</option>
+                    <option value="group">Group of People</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label>Subject Description (Fixed)</label>
+                <textarea id="singleSubject" class="subject-description" readonly>a beautiful Malay Malaysian woman, tall with a full figure, voluptuous, curvy, well-endowed, 40 years old, with warm brown skin tone and gentle features, looking away from camera, candid expression</textarea>
+                <textarea id="groupSubject" class="subject-description" style="display: none;" readonly>a group of beautiful Malay Malaysian women, all tall with full voluptuous figures, curvy and well-endowed with ample bosoms, diverse in age from 30s to 40s, with warm brown skin tones and gentle features, all wearing various styles of hijab, looking natural and at ease with each other, some looking away from camera with candid expressions</textarea>
             </div>
 
             <div class="input-group">

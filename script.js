@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Get all the necessary elements
-    const subject = document.getElementById('subject');
     const clothing = document.getElementById('clothing');
     const action = document.getElementById('action');
     const setting = document.getElementById('setting');
@@ -12,6 +11,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const output = document.getElementById('output');
     const copyButton = document.getElementById('copyButton');
     const randomButton = document.getElementById('randomButton');
+    const subjectType = document.getElementById('subjectType');
+    const singleSubject = document.getElementById('singleSubject');
+    const groupSubject = document.getElementById('groupSubject');
 
     // Function to get selected values from multiple select
     const getSelectedValues = (select) => {
@@ -107,58 +109,40 @@ document.addEventListener('DOMContentLoaded', () => {
         generatePrompt();
     };
 
+    // Function to handle subject type change
+    function handleSubjectTypeChange() {
+        if (subjectType.value === 'single') {
+            singleSubject.style.display = 'block';
+            groupSubject.style.display = 'none';
+        } else {
+            singleSubject.style.display = 'none';
+            groupSubject.style.display = 'block';
+        }
+        generatePrompt();
+    }
+
     // Function to generate the prompt
     const generatePrompt = () => {
+        const currentSubject = subjectType.value === 'single' ? singleSubject.value : groupSubject.value;
         const selectedClothing = getSelectedValues(clothing);
-        const selectedActions = getSelectedValues(action);
-        const selectedSettings = getSelectedValues(setting);
-        const selectedShotTypes = getSelectedValues(shotType);
-        const selectedStyles = getSelectedValues(style);
+        const selectedAction = getSelectedValues(action);
+        const selectedSetting = getSelectedValues(setting);
+        const selectedShotType = getSelectedValues(shotType);
+        const selectedStyle = getSelectedValues(style);
         const selectedLighting = getSelectedValues(lighting);
-        const selectedAesthetics = getSelectedValues(aesthetic);
-        const selectedMoods = getSelectedValues(mood);
+        const selectedAesthetic = getSelectedValues(aesthetic);
+        const selectedMood = getSelectedValues(mood);
 
-        let prompt = subject.value;
+        let prompt = currentSubject;
 
-        // Add shot type first if selected
-        if (selectedShotTypes.length > 0) {
-            prompt += `, ${selectedShotTypes[0]}`;
-        }
-
-        // Add clothing if selected
-        if (selectedClothing.length > 0) {
-            prompt += ` wearing ${selectedClothing[0]}`;
-        }
-
-        // Add actions if selected
-        if (selectedActions.length > 0) {
-            prompt += `, ${selectedActions[0]}`;
-        }
-
-        // Add settings if selected
-        if (selectedSettings.length > 0) {
-            prompt += ` in ${selectedSettings[0]}`;
-        }
-
-        // Add styles if selected
-        if (selectedStyles.length > 0) {
-            prompt += `, ${selectedStyles[0]} style`;
-        }
-
-        // Add lighting if selected
-        if (selectedLighting.length > 0) {
-            prompt += `, with ${selectedLighting[0]} lighting`;
-        }
-
-        // Add aesthetics if selected
-        if (selectedAesthetics.length > 0) {
-            prompt += `, ${selectedAesthetics[0]} aesthetic`;
-        }
-
-        // Add moods if selected
-        if (selectedMoods.length > 0) {
-            prompt += `, ${selectedMoods[0]} mood`;
-        }
+        if (selectedShotType.length) prompt += `, ${selectedShotType[0]}`;
+        if (selectedClothing.length) prompt += `, wearing ${selectedClothing[0]}`;
+        if (selectedAction.length) prompt += `, ${selectedAction[0]}`;
+        if (selectedSetting.length) prompt += `, in ${selectedSetting[0]}`;
+        if (selectedStyle.length) prompt += `, ${selectedStyle[0]} style`;
+        if (selectedLighting.length) prompt += `, with ${selectedLighting[0]} lighting`;
+        if (selectedAesthetic.length) prompt += `, ${selectedAesthetic[0]} aesthetic`;
+        if (selectedMood.length) prompt += `, ${selectedMood[0]} mood`;
 
         // Add final touches
         prompt += `, high quality, 4k, detailed`;
@@ -166,14 +150,19 @@ document.addEventListener('DOMContentLoaded', () => {
         // Remove duplicate words while preserving sentence structure
         prompt = removeDuplicateWords(prompt);
 
+        // Set the output value
         output.value = prompt;
-        
+
         // Automatically copy to clipboard
         copyToClipboard(prompt);
     };
 
     // Function to generate random selections
     const generateRandomSelections = () => {
+        // Randomly select subject type
+        subjectType.value = Math.random() < 0.5 ? 'single' : 'group';
+        handleSubjectTypeChange();
+
         selectRandomOptions(clothing);
         selectRandomOptions(action);
         selectRandomOptions(setting);
@@ -196,6 +185,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Copy button functionality
     copyButton.addEventListener('click', () => copyToClipboard(output.value));
 
+    // Add event listener for subject type change
+    subjectType.addEventListener('change', handleSubjectTypeChange);
+
     // Generate initial prompt
+    handleSubjectTypeChange();
     generatePrompt();
 }); 
